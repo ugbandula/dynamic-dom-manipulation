@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+  <head>
+    <title> Repeating Radio Button Example </title>
+    <meta name="description" content="">
+    <meta name="author" content="Bandula Gamage">
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- AngularJS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!-- <script src="scripts/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
+    <script src="script.js"></script>
+  </head>
+
+<body ng-controller="MainController">
+    Answer to question in Stackoverflow <code>How to add radio buttons and input fields using angularJS</code>
+    <br><a href="http://stackoverflow.com/questions/32303160/how-to-add-radio-buttons-and-input-fields-using-angularjs/">http://stackoverflow.com/questions/32303160/how-to-add-radio-buttons-and-input-fields-using-angularjs/</a>
+    <hr>
+
+<table>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr ng-repeat="question in questionList track by $index">
+    <td>
+      {{$index+1}}
+    </td>
+    
+    <td>
+      <input type="text" ng-model="question.question_text">
+    </td>
+    
+    <td ng-repeat="answer in question.answersList track by $index">
+      <input type="radio" name="{{$parent.$index}}" ng-value="1" ng-model="answer.is_correct">
+    </td>
+    <td>
+      <input type="button" ng-click="removeRow($index)" value="x">
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<input type="button" ng-click="addRow()" value="Add Row">
+
+<hr>
+<h4>Usage</h4>
+<p>
+  The current version supports <strong>dynamically add / remove</strong> elements from the list.
+</p>
+<ol>
+  <li>Add a row: Click on Add Row</li>
+  <li>Delete a row: Click on the 'x' on each row</li>
+</ol>
+</body>
+
+</html>
